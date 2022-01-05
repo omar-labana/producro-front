@@ -15,7 +15,7 @@ const Product = ({ data, queueSetter }) => {
 
     return (
         <li className="border-2 border-slate-900 rounded-lg p-4 ">
-            <input type="checkbox" className="" onChange={handleChange} />
+            <input type="checkbox" className="delete-checkbox" onChange={handleChange} />
             <ul className="text-center">
                 <li>
                     {data.sku}

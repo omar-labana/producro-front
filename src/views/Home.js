@@ -5,23 +5,33 @@ import { useEffect, useState } from 'react'
 const Home = () => {
     const [products, setProducts] = useState([])
     const [deleteQueue, setDeleteQueue] = useState([])
+
     useEffect(() => {
-        fetch('https://producto-back.000webhostapp.com/api/read_all.php')
+        fetch('https://producto-task.000webhostapp.com/api/read_all.php')
             .then(results => results.json())
-            .then(data => setProducts(data));
+            .then(data => setProducts(data.data));
     }, [])
 
     const deleteSelected = () => {
-        const url = "https://producto-back.000webhostapp.com/api/delete_many.php";
+        const checked = document.querySelectorAll(".delete-checkbox:checked");
+        const ids = [];
+        for (let i = 0; i < checked.length; i++) {
+            ids.push(checked[i].parentNode.childNodes[1].childNodes[0].innerHTML);
+        }
+        const tar = products.filter(item => ids.includes(item.sku))
+        const url = "/api/delete_many.php";
         fetch(url, {
-            method: 'DELETE',
-            body: JSON.stringify({ targets: deleteQueue }),
+            method: 'POST',
+            body: JSON.stringify({ targets: tar }),
             headers: {
                 'Content-Type': 'application/json'
             }
         })
             .then(() => {
                 console.log("done")
+                fetch('https://producto-task.000webhostapp.com/api/read_all.php')
+                    .then(results => results.json())
+                    .then(data => setProducts(data.data));
             })
             .catch(err => console.log(err));
         setDeleteQueue([]);

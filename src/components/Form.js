@@ -15,16 +15,13 @@ const Form = () => {
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
-
         e.preventDefault();
-        console.log(JSON.stringify(product))
-        const url = "https://producto-back.000webhostapp.com/api/add_product.php";
+        const url = "/api/add_product.php";
         fetch(url, {
-            method: 'PUT',
+            method: 'POST',
             body: JSON.stringify(product),
             headers: {
                 'Content-Type': 'application/json',
-                'Allow-Control-Allow-Origin': '*'
             }
         })
             .then(() => {

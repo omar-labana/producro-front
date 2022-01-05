@@ -1,12 +1,10 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 const Header = ({ deleteAction }) => {
-    const navigate = useNavigate();
 
     const handleClick = () => {
         deleteAction();
-        navigate('/')
     }
-    
+
     return (
         <header className="flex justify-between border-b-4 border-black py-6 px-4">
             <h1 className="text-5xl">Product List</h1>
