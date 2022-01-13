@@ -5,12 +5,13 @@ header('Access-Control-Allow-Methods: DELETE');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization,X-Requested-With');
 
 include_once '../config/Database.php';
-include_once '../models/Product.php';
+include_once '../models/Book.php';
+include_once '../models/Furniture.php';
+include_once '../models/DVD.php';
 
 $database = new Database();
 $db = $database->connect();
 
-// $data = file_get_contents("php://input");
 $data = json_decode(file_get_contents("php://input"));
 $targets = $data->targets;
 
