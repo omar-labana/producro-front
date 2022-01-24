@@ -10,5 +10,5 @@ include_once '../models/ReadProducts.php';
 $database = new Database();
 $db = $database->connect();
 
-$res = new ReadProducts();
-$res->readProducts($db);
+$readAll = new ReadProducts();
+$readAll->readAll($db);

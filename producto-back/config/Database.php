@@ -1,23 +1,27 @@
 <?php
 class Database
 {
-    private $host = 'localhost';
-    private $db_name = 'products';
-    private $username = 'root';
-    private $password = '';
-    private $conn;
+	private $host = 'localhost';
+	private $db_name = 'products';
+	private $username = 'root';
+	private $password = '';
+	private $conn;
 
-    public function connect()
-    {
-        $this->conn = null;
+	public function connect()
+	{
+		$this->conn = null;
 
-        try {
-            $this->conn = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->db_name, $this->username, $this->password);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            echo 'Connection Error: ' . $e->getMessage();
-        }
+		try {
+			$this->conn = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->db_name, $this->username, $this->password);
+			$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		} catch (PDOException $e) {
+			echo 'Connection Error: ' . $e->getMessage();
+		}
 
-        return $this->conn;
-    }
+		return $this->conn;
+	}
+
+	public function concatQuery($hash)
+	{
+	}
 }

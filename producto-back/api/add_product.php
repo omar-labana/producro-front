@@ -17,4 +17,4 @@ $type = $data->type;
 
 $product = new $type();
 $product->populate($data);
-$product->InitializeTransaction($db);
+$product->addProduct($db);

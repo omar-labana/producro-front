@@ -16,18 +16,10 @@ $data = json_decode(file_get_contents("php://input"));
 $targets = $data->targets;
 
 foreach ($targets as $target) {
-    $type =  $target->type;
-    $product = new $type();
-    $product->populate($target);
-    $product->deleteProduct($db);
+	$type =  $target->type;
+	$product = new $type();
+	$product->populate($target);
+	$product->deleteProduct($db);
 }
 
 echo "Success";
-
-
-
-// $type = $data->type;
-
-// $product = new $type();
-// $product->populate($data);
-// $product->deleteProduct($db);
