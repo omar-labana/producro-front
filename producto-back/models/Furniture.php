@@ -3,60 +3,23 @@ include_once 'Product.php';
 
 class Furniture extends Product
 {
-	private $width;
-	private $height;
-	private $length;
+  private $pivoteProductData;
 
-	public function setWidth($width)
-	{
-		$this->width = $width;
-	}
+  public function __construct()
+  {
+    parent::__construct();
+    $this->pivoteProductData = array("width" => NULL, "height" => NULL, "length" => NULL);
+  }
 
-	public function setHeight($height)
-	{
-		$this->height = $height;
-	}
+  public function setPivoteProductData($data)
+  {
+    $this->pivoteProductData["width"] = $data["width"];
+    $this->pivoteProductData["height"] = $data["height"];
+    $this->pivoteProductData["length"] = $data["length"];
+  }
 
-	public function setLength($length)
-	{
-		$this->length = $length;
-	}
-
-	public function getWidth()
-	{
-		return $this->width;
-	}
-
-	public function getHeight()
-	{
-		return $this->height;
-	}
-
-	public function getLength()
-	{
-		return $this->length;
-	}
-
-	public function populate($data)
-	{
-		parent::populate($data);
-		$this->setWidth($data->width);
-		$this->setHeight($data->height);
-		$this->setLength($data->length);
-	}
-
-	public function addProduct($conn)
-	{
-		$product_id = parent::addProduct($conn);
-		$width = $this->getWidth();
-		$height = $this->getHeight();
-		$length = $this->getLength();
-		$sql = "INSERT INTO Furniture (product_id, width, height, length) VALUES (:product_id, :width, :height, :length)";
-		$stmt = $conn->prepare($sql);
-		$stmt->bindParam(':product_id', $product_id);
-		$stmt->bindParam(':width', $width);
-		$stmt->bindParam(':height', $height);
-		$stmt->bindParam(':length', $length);
-		$stmt->execute();
-	}
+  public function getPivotProductData()
+  {
+    return $this->pivoteProductData;
+  }
 }

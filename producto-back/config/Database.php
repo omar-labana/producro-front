@@ -20,8 +20,4 @@ class Database
 
 		return $this->conn;
 	}
-
-	public function concatQuery($hash)
-	{
-	}
 }
